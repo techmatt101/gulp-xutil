@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var chalk = require('chalk');
 var gulp = require('gulp');
 var util = require('gulp-util');
@@ -35,7 +36,7 @@ util.logEnv = function() {
 
     var msg = [
         chalk.bold(project.name),
-        chalk.inverse(ENV) 
+        chalk.inverse(ENV)
     ];
 
     if(util.isWatching) {
@@ -53,7 +54,7 @@ util.logEnv = function() {
     if(util.ignoreErrors) {
         msg.push(chalk.bgRed('IGNORE ERRORS'));
     }
-    
+
     util.log(msg.join(' | '));
 };
 
@@ -99,10 +100,10 @@ util.handleError = (err, taskName) => {
 util.loadPlugins = function(disabledPlugins) {
     var pluginLoader = require('gulp-load-plugins');
     var through2 = require('through2');
-
     var plugins = pluginLoader({
         //lazy: false,
         //debug: true,
+        config: path.join(path.dirname(module.parent.filename), '/package.json'),
         renameFn: (name) => {
             name = name.replace('gulp-', '').replace(/-(\w)/g, (m, p1) => p1.toUpperCase());
             if(disabledPlugins.indexOf(name) !== -1) {
