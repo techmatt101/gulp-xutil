@@ -1,6 +1,6 @@
 {
   "name": "gulp-xutil",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Crazy gulp util wrapper",
   "main": "util.js",
   "author": "techmatt101",
