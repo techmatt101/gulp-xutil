@@ -131,7 +131,7 @@ util.trackBuildFails = function() {
     gulp.Gulp.prototype._runTask = function(task) {
         currentTask = task.name;
         failedTasks[currentTask] = false;
-        if(task.fn) {
+        if(task.fn && task.fn.length === 0) {
             var oldFn = task.fn;
             task.fn = function() {
                 var result = oldFn.apply(this, arguments);
