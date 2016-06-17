@@ -93,7 +93,10 @@ util.disableParallel = function(){
 util.handleError = (err, taskName) => {
     failedTasks[taskName || currentTask] = true;
     if(!util.ignoreErrors) {
+        throw err;
         process.exit(1);
+    } else {
+        util.log(chalk.red(err.message));
     }
 };
 
