@@ -90,13 +90,14 @@ util.disableParallel = function(){
     util.isParallel = false;
 };
 
-util.handleError = (err, taskName) => {
+util.handleError = function(err, taskName) {
     failedTasks[taskName || currentTask] = true;
     if(!util.ignoreErrors) {
         throw err;
         process.exit(1);
     } else {
         util.log(chalk.red(err.message));
+        this.emit('end');
     }
 };
 
