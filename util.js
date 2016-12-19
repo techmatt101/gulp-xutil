@@ -159,6 +159,7 @@ util.trackBuildFails = function() {
 };
 
 util.catchProcessErrors = function() {
+    process.setMaxListeners(0); //stops too large number of parallel processes from crashing
     process.on('SIGINT', () => { //catches ctrl+c event
         process.exit();
     });
